@@ -8,3 +8,11 @@ google.generativeai
 sentence_transformers
 sklearn.metrics.pairwise
 werkzeug
+json
+langchain_google_genai
+pandas
+datetime
+langchain_core
+langchain_community
+google-auth
+faiss-cpu
