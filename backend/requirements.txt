@@ -3,3 +3,8 @@ python-dotenv
 flask
 flask_cors
 redis
+PyPDF2
+google.generativeai
+sentence_transformers
+sklearn.metrics.pairwise
+werkzeug
