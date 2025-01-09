@@ -6,9 +6,8 @@ redis
 PyPDF2
 google.generativeai
 sentence_transformers
-sklearn.metrics.pairwise
+scikit-learn
 werkzeug
-json
 langchain_google_genai
 pandas
 datetime
