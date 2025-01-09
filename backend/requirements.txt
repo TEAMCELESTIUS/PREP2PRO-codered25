@@ -1,0 +1,5 @@
+supabase
+python-dotenv
+flask
+flask_cors
+redis
