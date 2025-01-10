@@ -16,3 +16,4 @@ langchain_core
 langchain_community
 google-auth
 faiss-cpu
+pyjwt
