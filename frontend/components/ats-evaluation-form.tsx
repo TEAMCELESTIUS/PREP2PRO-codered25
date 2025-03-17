@@ -82,44 +82,45 @@ export function ATSEvaluationForm() {
   };
 
   return (
-    <div className="space-y-8">
-      <Card>
+    <div className="space-y-8 bg-gray-900 p-6 rounded-lg">
+      <Card className="bg-gray-800 border border-gray-700">
         <CardHeader>
-          <CardTitle>Upload Resume</CardTitle>
+          <CardTitle className="text-gray-100">Upload Resume</CardTitle>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="jobDescription">Job Description</Label>
+              <Label htmlFor="jobDescription" className="text-gray-200">Job Description</Label>
               <Input
                 id="jobDescription"
                 value={jobDescription}
                 onChange={(e) => setJobDescription(e.target.value)}
                 placeholder="Paste the job description here"
                 required
+                className="bg-gray-700 border-gray-600 text-gray-100 placeholder:text-gray-400"
               />
             </div>
             <div className="space-y-2">
-              <Label>Resume (PDF)</Label>
+              <Label className="text-gray-200">Resume (PDF)</Label>
               <div
                 {...getRootProps()}
                 className={`border-2 border-dashed rounded-lg p-8 text-center cursor-pointer transition-colors ${
-                  isDragActive ? 'border-[#2563EB] bg-[#2563EB]/10' : 'border-muted hover:border-[#2563EB]'
+                  isDragActive ? 'border-purple-500 bg-purple-500/10' : 'border-gray-600 hover:border-purple-500'
                 }`}
               >
                 <input {...getInputProps()} />
                 {file ? (
-                  <div className="flex items-center justify-center text-[#2563EB]">
+                  <div className="flex items-center justify-center text-purple-400">
                     <FileText className="mr-2 h-5 w-5" />
                     <span>{file.name}</span>
                   </div>
                 ) : (
                   <div>
-                    <Upload className="mx-auto h-12 w-12 text-muted-foreground" />
-                    <p className="mt-2 text-sm text-muted-foreground">
+                    <Upload className="mx-auto h-12 w-12 text-gray-400" />
+                    <p className="mt-2 text-sm text-gray-400">
                       Drag & drop your resume here, or click to select file
                     </p>
-                    <p className="text-xs text-muted-foreground mt-2">
+                    <p className="text-xs text-gray-500 mt-2">
                       Supported format: PDF
                     </p>
                   </div>
@@ -128,7 +129,7 @@ export function ATSEvaluationForm() {
             </div>
             <Button
               type="submit"
-              className="w-full bg-[#2563EB] hover:bg-[#2563EB]/90"
+              className="w-full bg-purple-600 hover:bg-purple-700 text-white"
               disabled={!file || !jobDescription || isEvaluating}
             >
               {isEvaluating ? 'Evaluating...' : 'Evaluate Resume'}
@@ -139,13 +140,13 @@ export function ATSEvaluationForm() {
 
       {evaluationResult && (
         <div className="space-y-6">
-          <Card>
+          <Card className="bg-gray-800 border border-gray-700">
             <CardHeader>
-              <CardTitle className="flex items-center">
-                <CheckCircle className="mr-2 h-5 w-5 text-[#2563EB]" />
+              <CardTitle className="flex items-center text-gray-100">
+                <CheckCircle className="mr-2 h-5 w-5 text-purple-400" />
                 ATS Score
                 <Tooltip title="Do not solely rely on our ATS score" arrow>
-                  <InfoOutlinedIcon style={{ cursor: 'pointer', fontSize: '20px', color: '#2563EB' }} />
+                  <InfoOutlinedIcon style={{ cursor: 'pointer', fontSize: '20px', color: '#9333ea' }} />
                 </Tooltip>
               </CardTitle>
             </CardHeader>
@@ -153,20 +154,25 @@ export function ATSEvaluationForm() {
               <div className="flex items-center gap-4">
                 <LinearProgress
                   determinate
-                  value={atsScore ? atsScore : 0}  // Use atsScore for the progress bar
+                  value={atsScore ? atsScore : 0}
+                  sx={{
+                    '& .MuiLinearProgress-bar': {
+                      backgroundColor: '#9333ea'
+                    }
+                  }}
                 />
-                <span className="text-lg font-semibold text-[#2563EB]">
-                  {atsScore ? atsScore.toFixed(2) : 0}%  {/* Display ATS score */}
+                <span className="text-lg font-semibold text-purple-400">
+                  {atsScore ? atsScore.toFixed(2) : 0}%
                 </span>
               </div>
             </CardContent>
           </Card>
-          <Card>
+          <Card className="bg-gray-800 border border-gray-700">
             <CardHeader>
-              <CardTitle>Suggestions</CardTitle>
+              <CardTitle className="text-gray-100">Suggestions</CardTitle>
             </CardHeader>
             <CardContent>
-              <ul className="text-muted-foreground list-disc pl-6">
+              <ul className="text-gray-300 list-disc pl-6">
                 {evaluationResult.suggestions.map((suggestion, index) => (
                   <li key={index}>{suggestion}</li>
                 ))}
@@ -177,9 +183,9 @@ export function ATSEvaluationForm() {
       )}
 
       {!evaluationResult && !isEvaluating && (
-        <Card>
+        <Card className="bg-gray-800 border border-gray-700">
           <CardContent className="text-center py-8">
-            <p className="text-muted-foreground">
+            <p className="text-gray-400">
               Upload your resume to see the evaluation result
             </p>
           </CardContent>
@@ -187,10 +193,10 @@ export function ATSEvaluationForm() {
       )}
 
       {isEvaluating && (
-        <Card>
+        <Card className="bg-gray-800 border border-gray-700">
           <CardContent className="text-center py-8">
-          <CircularProgress />
-            <p className="text-[#2563EB]">Perp2pro is Evaluating your resume...</p>
+          <CircularProgress sx={{ color: '#9333ea' }} />
+            <p className="text-purple-400">Perp2pro is Evaluating your resume...</p>
           </CardContent>
         </Card>
       )}
